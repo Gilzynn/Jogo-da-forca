@@ -32,7 +32,6 @@
             cursor: pointer;
         }
     </style>
-    IFRAME SYNC
 <script type="text/javascript">
 	atOptions = {
 		'key' : '767ccec94bd391d7ff2482e0da5034bd',
