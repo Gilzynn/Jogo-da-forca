@@ -122,5 +122,6 @@
         createKeyboard();
         displayWord();
     </script>
+    <iframe data-aa='2286050' src='//acceptable.a-ads.com/2286050' style='border:0px; padding:0; width:100%; height:100%; overflow:hidden; background-color: transparent;'></iframe>
 </body>
 </html>
