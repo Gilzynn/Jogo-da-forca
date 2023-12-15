@@ -11,7 +11,8 @@
 
         <!-- Espaço para o primeiro anúncio no cabeçalho -->
         <div id="anuncio1">
-            <script async src="URL_DO_SEU_ANUNCIO_1"></script>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2560318346621657"
+     crossorigin="anonymous"></script>
         </div>
 
         <!-- Espaço para o segundo anúncio no cabeçalho -->
