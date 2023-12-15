@@ -1,62 +1,125 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapeuzinho Vermelho</title>
+    <title>Jogo da Forca</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            color: #333;
         }
 
-        header {
-            background-color: #d9534f;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
+        #word-display {
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
-        main {
-            padding: 20px;
+        #guess-input {
+            font-size: 18px;
+            width: 30px;
         }
 
-        h2 {
-            color: #d9534f;
+        #feedback {
+            margin-top: 10px;
+            font-size: 18px;
+            color: red;
         }
 
-        p {
-            margin-bottom: 15px;
+        .keyboard-btn {
+            font-size: 16px;
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     </style>
-    <iframe data-aa='2286046' src='//ad.a-ads.com/2286046?size=320x50' estilo='largura:320px; altura:50px; borda:0px; preenchimento:0; estouro: oculto; cor de fundo: transparente;'></iframe>
 </head>
 <body>
+    <h1>Jogo da Forca</h1>
 
-    <header>
-        <h1>A História da Chapeuzinho Vermelho</h1>
-    </header>
+    <div id="word-display"></div>
+    <input type="text" id="guess-input" maxlength="1">
+    <button onclick="guess()">Adivinhar</button>
+    <div id="feedback"></div>
 
-    <main>
-        <h2>Capítulo 1: O Encontro na Floresta</h2>
-        <p>Era uma vez, numa pequena aldeia, uma doce menina chamada Chapeuzinho Vermelho.</p>
-        <p>Um dia, sua mãe pediu que ela levasse uma cesta de doces para a vovó, que morava do outro lado da floresta.</p>
+    <div id="keyboard">
+        <!-- Teclado será adicionado aqui via JavaScript -->
+    </div>
 
-        <h2>Capítulo 2: O Lobo Mau</h2>
-        <p>No caminho, Chapeuzinho Vermelho encontrou um lobo astuto que, disfarçado, tentou descobrir para onde ela ia.</p>
-        <p>O lobo, então, teve uma ideia maliciosa de chegar primeiro à casa da vovó.</p>
+    <script>
+        const words = ["javascript", "html", "css", "developer", "programming"];
+        let selectedWord = words[Math.floor(Math.random() * words.length)];
+        let guessedLetters = [];
+        let attemptsLeft = 6;
 
-        <h2>Capítulo 3: A Surpresa na Casa da Vovó</h2>
-        <p>Quando Chapeuzinho Vermelho chegou à casa da vovó, estranhou o comportamento diferente dela.</p>
-        <p>Para sua surpresa, o lobo estava na cama, tentando se passar pela vovó!</p>
+        function displayWord() {
+            let display = "";
+            for (let letter of selectedWord) {
+                if (guessedLetters.includes(letter)) {
+                    display += letter + " ";
+                } else {
+                    display += "_ ";
+                }
+            }
+            document.getElementById("word-display").textContent = display.trim();
+        }
 
-        <h2>Capítulo 4: A Lição Aprendida</h2>
-        <p>Chapeuzinho Vermelho, esperta como era, conseguiu escapar do lobo e pedir ajuda.</p>
-        <p>No final, aprendeu uma valiosa lição sobre a importância de ser cuidadosa ao seguir o caminho na floresta.</p>
-    </main>
+        function guess() {
+            const inputElement = document.getElementById("guess-input");
+            const feedbackElement = document.getElementById("feedback");
 
+            const guessedLetter = inputElement.value.toLowerCase();
+
+            if (!guessedLetter.match(/[a-z]/i)) {
+                feedbackElement.textContent = "Por favor, insira uma letra válida.";
+                return;
+            }
+
+            if (guessedLetters.includes(guessedLetter)) {
+                feedbackElement.textContent = "Você já tentou essa letra.";
+                return;
+            }
+
+            guessedLetters.push(guessedLetter);
+
+            if (!selectedWord.includes(guessedLetter)) {
+                attemptsLeft--;
+                feedbackElement.textContent = `Letra incorreta! Tentativas restantes: ${attemptsLeft}`;
+            }
+
+            displayWord();
+
+            if (attemptsLeft === 0) {
+                feedbackElement.textContent = `Você perdeu. A palavra era: ${selectedWord}`;
+                inputElement.disabled = true;
+            } else if (!displayWord().includes("_")) {
+                feedbackElement.textContent = "Parabéns! Você venceu!";
+                inputElement.disabled = true;
+            } else {
+                feedbackElement.textContent = "";
+            }
+
+            inputElement.value = "";
+            inputElement.focus();
+        }
+
+        function createKeyboard() {
+            const keyboardContainer = document.getElementById("keyboard");
+            const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+            for (let letter of alphabet) {
+                const button = document.createElement("button");
+                button.textContent = letter;
+                button.classList.add("keyboard-btn");
+                button.onclick = function () {
+                    document.getElementById("guess-input").value = letter;
+                    guess();
+                };
+                keyboardContainer.appendChild(button);
+            }
+        }
+
+        createKeyboard();
+        displayWord();
+    </script>
 </body>
 </html>
