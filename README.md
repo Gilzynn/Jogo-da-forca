@@ -1,145 +1,61 @@
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Forca</title>
+    <title>Chapeuzinho Vermelho</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
         }
 
-        #word-display {
-            font-size: 24px;
-            margin-bottom: 20px;
+        header {
+            background-color: #d9534f;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
         }
 
-        #guess-input {
-            font-size: 18px;
-            width: 30px;
+        main {
+            padding: 20px;
         }
 
-        #feedback {
-            margin-top: 10px;
-            font-size: 18px;
-            color: red;
+        h2 {
+            color: #d9534f;
         }
 
-        .keyboard-btn {
-            font-size: 16px;
-            margin: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
+        p {
+            margin-bottom: 15px;
         }
     </style>
-    <script type="text/javascript">
-	atOptions = {
-		'key' : '767ccec94bd391d7ff2482e0da5034bd',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-	document.write('<scr' + 'ipt type="text/javascript" src="//remainmother.com/767ccec94bd391d7ff2482e0da5034bd/invoke.js"></scr' + 'ipt>');
-</script>
 </head>
 <body>
-    <h1>Jogo da Forca</h1>
 
-    <div id="word-display"></div>
-    <input type="text" id="guess-input" maxlength="1">
-    <button onclick="guess()">Adivinhar</button>
-    <div id="feedback"></div>
+    <header>
+        <h1>A História da Chapeuzinho Vermelho</h1>
+    </header>
 
-    <div id="keyboard">
-        <!-- Teclado será adicionado aqui via JavaScript -->
-    </div>
+    <main>
+        <h2>Capítulo 1: O Encontro na Floresta</h2>
+        <p>Era uma vez, numa pequena aldeia, uma doce menina chamada Chapeuzinho Vermelho.</p>
+        <p>Um dia, sua mãe pediu que ela levasse uma cesta de doces para a vovó, que morava do outro lado da floresta.</p>
 
-    <script>
-        const words = ["javascript", "html", "css", "developer", "programming"];
-        let selectedWord = words[Math.floor(Math.random() * words.length)];
-        let guessedLetters = [];
-        let attemptsLeft = 6;
+        <h2>Capítulo 2: O Lobo Mau</h2>
+        <p>No caminho, Chapeuzinho Vermelho encontrou um lobo astuto que, disfarçado, tentou descobrir para onde ela ia.</p>
+        <p>O lobo, então, teve uma ideia maliciosa de chegar primeiro à casa da vovó.</p>
 
-        function displayWord() {
-            let display = "";
-            for (let letter of selectedWord) {
-                if (guessedLetters.includes(letter)) {
-                    display += letter + " ";
-                } else {
-                    display += "_ ";
-                }
-            }
-            document.getElementById("word-display").textContent = display.trim();
-        }
+        <h2>Capítulo 3: A Surpresa na Casa da Vovó</h2>
+        <p>Quando Chapeuzinho Vermelho chegou à casa da vovó, estranhou o comportamento diferente dela.</p>
+        <p>Para sua surpresa, o lobo estava na cama, tentando se passar pela vovó!</p>
 
-        function guess() {
-            const inputElement = document.getElementById("guess-input");
-            const feedbackElement = document.getElementById("feedback");
+        <h2>Capítulo 4: A Lição Aprendida</h2>
+        <p>Chapeuzinho Vermelho, esperta como era, conseguiu escapar do lobo e pedir ajuda.</p>
+        <p>No final, aprendeu uma valiosa lição sobre a importância de ser cuidadosa ao seguir o caminho na floresta.</p>
+    </main>
 
-            const guessedLetter = inputElement.value.toLowerCase();
-
-            if (!guessedLetter.match(/[a-z]/i)) {
-                feedbackElement.textContent = "Por favor, insira uma letra válida.";
-                return;
-            }
-
-            if (guessedLetters.includes(guessedLetter)) {
-                feedbackElement.textContent = "Você já tentou essa letra.";
-                return;
-            }
-
-            guessedLetters.push(guessedLetter);
-
-            if (!selectedWord.includes(guessedLetter)) {
-                attemptsLeft--;
-                feedbackElement.textContent = `Letra incorreta! Tentativas restantes: ${attemptsLeft}`;
-            }
-
-            displayWord();
-
-            if (attemptsLeft === 0) {
-                feedbackElement.textContent = `Você perdeu. A palavra era: ${selectedWord}`;
-                inputElement.disabled = true;
-            } else if (!displayWord().includes("_")) {
-                feedbackElement.textContent = "Parabéns! Você venceu!";
-                inputElement.disabled = true;
-            } else {
-                feedbackElement.textContent = "";
-            }
-
-            inputElement.value = "";
-            inputElement.focus();
-        }
-
-        function createKeyboard() {
-            const keyboardContainer = document.getElementById("keyboard");
-            const alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-            for (let letter of alphabet) {
-                const button = document.createElement("button");
-                button.textContent = letter;
-                button.classList.add("keyboard-btn");
-                button.onclick = function () {
-                    document.getElementById("guess-input").value = letter;
-                    guess();
-                };
-                keyboardContainer.appendChild(button);
-            }
-        }
-
-        createKeyboard();
-        displayWord();
-    </script>
-    <script type="text/javascript">
-	atOptions = {
-		'key' : 'e96434ae552c2b401955a9d8014ca9b0',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-	document.write('<scr' + 'ipt type="text/javascript" src="//remainmother.com/e96434ae552c2b401955a9d8014ca9b0/invoke.js"></scr' + 'ipt>');
-</script>
 </body>
 </html>
