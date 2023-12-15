@@ -32,6 +32,7 @@
             cursor: pointer;
         }
     </style>
+    <iframe data-aa='2286046' src='//ad.a-ads.com/2286046?size=320x50' style='width:320px; height:50px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
 </head>
 <body>
     <h1>Jogo da Forca</h1>
