@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Forca</title>
@@ -25,17 +24,14 @@
             font-size: 18px;
             color: red;
         }
+
+        .keyboard-btn {
+            font-size: 16px;
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
     </style>
-    <script type="text/javascript">
-	atOptions = {
-		'key' : '767ccec94bd391d7ff2482e0da5034bd',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-	document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/767ccec94bd391d7ff2482e0da5034bd/invoke.js"></scr' + 'ipt>');
-</script>
 </head>
 <body>
     <h1>Jogo da Forca</h1>
@@ -44,6 +40,10 @@
     <input type="text" id="guess-input" maxlength="1">
     <button onclick="guess()">Adivinhar</button>
     <div id="feedback"></div>
+
+    <div id="keyboard">
+        <!-- Teclado será adicionado aqui via JavaScript -->
+    </div>
 
     <script>
         const words = ["javascript", "html", "css", "developer", "programming"];
@@ -102,6 +102,23 @@
             inputElement.focus();
         }
 
+        function createKeyboard() {
+            const keyboardContainer = document.getElementById("keyboard");
+            const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+            for (let letter of alphabet) {
+                const button = document.createElement("button");
+                button.textContent = letter;
+                button.classList.add("keyboard-btn");
+                button.onclick = function () {
+                    document.getElementById("guess-input").value = letter;
+                    guess();
+                };
+                keyboardContainer.appendChild(button);
+            }
+        }
+
+        createKeyboard();
         displayWord();
     </script>
 </body>
