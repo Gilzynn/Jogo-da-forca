@@ -3,60 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Site com Anúncios no Cabeçalho</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2560318346621657"
-     crossorigin="anonymous"></script>
+    <title>Jogo da Forca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #word-display {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #guess-input {
+            font-size: 18px;
+            width: 30px;
+        }
+
+        #feedback {
+            margin-top: 10px;
+            font-size: 18px;
+            color: red;
+        }
+
+        .keyboard-btn {
+            font-size: 16px;
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2560318346621657"
-     crossorigin="anonymous"></script>
-    <header>
-        <h1>Seu Site</h1>
+<body>
+    <h1>Jogo da Forca</h1>
 
-        <!-- Espaço para o primeiro anúncio no cabeçalho -->
-        <div id="anuncio1">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2560318346621657"
-     crossorigin="anonymous"></script>
-        </div>
+    <div id="word-display"></div>
+    <input type="text" id="guess-input" maxlength="1">
+    <button onclick="guess()">Adivinhar</button>
+    <div id="feedback"></div>
 
-        <!-- Espaço para o segundo anúncio no cabeçalho -->
-        <div id="anuncio2">
-            <script async src="URL_DO_SEU_ANUNCIO_2"></script>
-        </div>
+    <div id="keyboard">
+        <!-- Teclado será adicionado aqui via JavaScript -->
+    </div>
 
-        <!-- Adicione mais divs conforme necessário para outros anúncios no cabeçalho -->
-        <div id="anuncio3">
-            <script async src="URL_DO_SEU_ANUNCIO_3"></script>
-        </div>
-        <div id="anuncio4">
-            <script async src="URL_DO_SEU_ANUNCIO_4"></script>
-        </div>
-        <div id="anuncio5">
-            <script async src="URL_DO_SEU_ANUNCIO_5"></script>
-        </div>
-        <div id="anuncio6">
-            <script async src="URL_DO_SEU_ANUNCIO_6"></script>
-        </div>
-        <div id="anuncio7">
-            <script async src="URL_DO_SEU_ANUNCIO_7"></script>
-        </div>
-        <div id="anuncio8">
-            <script async src="URL_DO_SEU_ANUNCIO_8"></script>
-        </div>
-        <div id="anuncio9">
-            <script async src="URL_DO_SEU_ANUNCIO_9"></script>
-        </div>
-        <div id="anuncio10">
-            <script async src="URL_DO_SEU_ANUNCIO_10"></script>
-        </div>
-    </header>
+    <script>
+        const words = ["javascript", "html", "css", "developer", "programming"];
+        let selectedWord = words[Math.floor(Math.random() * words.length)];
+        let guessedLetters = [];
+        let attemptsLeft = 6;
 
-    <section>
-        <h2>Conteúdo do Site</h2>
-        <p>Aqui está o conteúdo interessante do seu site.</p>
-    </section>
+        function displayWord() {
+            let display = "";
+            for (let letter of selectedWord) {
+                if (guessedLetters.includes(letter)) {
+                    display += letter + " ";
+                } else {
+                    display += "_ ";
+                }
+            }
+            document.getElementById("word-display").textContent = display.trim();
+        }
 
-    <footer>
-        <p>Rodapé do seu site</p>
-    </footer>
+        function guess() {
+            const inputElement = document.getElementById("guess-input");
+            const feedbackElement = document.getElementById("feedback");
+
+            const guessedLetter = inputElement.value.toLowerCase();
+
+            if (!guessedLetter.match(/[a-z]/i)) {
+                feedbackElement.textContent = "Por favor, insira uma letra válida.";
+                return;
+            }
+
+            if (guessedLetters.includes(guessedLetter)) {
+                feedbackElement.textContent = "Você já tentou essa letra.";
+                return;
+            }
+
+            guessedLetters.push(guessedLetter);
+
+            if (!selectedWord.includes(guessedLetter)) {
+                attemptsLeft--;
+                feedbackElement.textContent = `Letra incorreta! Tentativas restantes: ${attemptsLeft}`;
+            }
+
+            displayWord();
+
+            if (attemptsLeft === 0) {
+                feedbackElement.textContent = `Você perdeu. A palavra era: ${selectedWord}`;
+                inputElement.disabled = true;
+            } else if (!displayWord().includes("_")) {
+                feedbackElement.textContent = "Parabéns! Você venceu!";
+                inputElement.disabled = true;
+            } else {
+                feedbackElement.textContent = "";
+            }
+
+            inputElement.value = "";
+            inputElement.focus();
+        }
+
+        function createKeyboard() {
+            const keyboardContainer = document.getElementById("keyboard");
+            const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+            for (let letter of alphabet) {
+                const button = document.createElement("button");
+                button.textContent = letter;
+                button.classList.add("keyboard-btn");
+                button.onclick = function () {
+                    document.getElementById("guess-input").value = letter;
+                    guess();
+                };
+                keyboardContainer.appendChild(button);
+            }
+        }
+
+        createKeyboard();
+        displayWord();
+    </script>
 </body>
 </html>
