@@ -5,43 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapeuzinho Vermelho</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
-
-        header {
-            background-color: #d9534f;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        h2 {
-            color: #d9534f;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-    </style>
-    <script type="text/javascript">
-	atOptions = {
-		'key' : '767ccec94bd391d7ff2482e0da5034bd',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-	document.write('<scr' + 'ipt type="text/javascript" src="//remainmother.com/767ccec94bd391d7ff2482e0da5034bd/invoke.js"></scr' + 'ipt>');
-</script>
+	    <iframe data-aa='2286046' src='//ad.a-ads.com/2286046?size=320x50' estilo='largura:320px; altura:50px; borda:0px; preenchimento:0; estouro: oculto; cor de fundo: transparente;'></iframe>
 </head>
 <body>
 
